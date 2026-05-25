@@ -232,7 +232,7 @@ export class DashboardLayout {
   notificationsOpen = signal(false);
 
   // Define dynamic active tab.
-  activeTab = signal('Overview');
+  activeTab = this.authService.activeDashboardTab;
 
   // Dynamic Sidebar Navigation based on roles
   private readonly allNavLinks: NavItem[] = [

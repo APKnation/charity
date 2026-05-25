@@ -393,7 +393,7 @@ export class DonationModalComponent {
   donorEmail = '';
 
   selectedMethod = signal<'card' | 'momo' | 'bank'>('card');
-  paymentMethods = [
+  paymentMethods: { id: 'card' | 'momo' | 'bank'; label: string }[] = [
     { id: 'card', label: 'Credit Card' },
     { id: 'momo', label: 'Mobile Money' },
     { id: 'bank', label: 'Bank Direct' }

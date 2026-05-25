@@ -82,9 +82,11 @@ export class AuthService {
   };
 
   currentUser = signal<User>(this.defaultUsers['guest']);
+  activeDashboardTab = signal('Overview');
 
   setRole(role: UserRole) {
     this.currentUser.set(this.defaultUsers[role]);
+    this.activeDashboardTab.set('Overview');
   }
 
   logout() {

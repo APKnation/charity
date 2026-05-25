@@ -220,6 +220,7 @@ import { StateService } from '../../services/state.service';
 export class CampaignDetail {
   route = inject(ActivatedRoute);
   stateService = inject(StateService);
+  protected readonly Math = Math;
 
   campaignId = signal<number | null>(null);
 
