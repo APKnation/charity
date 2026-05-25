@@ -1,3 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+/* ── Global Typography: Work Sans ── */
+:root {
+  --font-work-sans: 'Work Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  font-family: var(--font-work-sans) !important;
+}
+
+html,
+body {
+  font-family: var(--font-work-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+  letter-spacing: -0.01em;
+}
+
+/* Headings inherit and use tighter tracking */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-work-sans);
+  letter-spacing: -0.02em;
+}
+
+/* Ensure form elements also use Work Sans */
+input, textarea, select, button {
+  font-family: var(--font-work-sans);
+}

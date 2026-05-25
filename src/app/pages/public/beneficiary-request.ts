@@ -33,7 +33,7 @@ import { AuthService } from '../../services/auth.service';
             <div class="space-y-1">
               <h3 class="font-bold text-slate-800 text-base">Request Submitted!</h3>
               <p class="text-xs text-slate-400 max-w-xs leading-relaxed">
-                Thank you, <strong>{{ beneficiaryName }}</strong>. Your assistance petition <strong>"{{ title }}"</strong> for <strong>\${{ requestedAmount | number }}</strong> has been filed.
+                Thank you, <strong>{{ beneficiaryName }}</strong>. Your assistance petition <strong>"{{ title }}"</strong> for <strong>TSh {{ requestedAmount | number }}</strong> has been filed.
               </p>
               <p class="text-[10px] text-amber-600 font-semibold mt-2 bg-amber-50 p-2 rounded-lg border border-amber-100/50">
                 Tip: Switch to the Admin role to approve or reject this request!
@@ -176,7 +176,7 @@ export class BeneficiaryRequestPage {
   beneficiaryEmail = '';
   title = '';
   description = '';
-  requestedAmount = 1000;
+  requestedAmount = 500000;
   documentsList = signal<string[]>([]);
   submitted = signal(false);
 
@@ -224,7 +224,7 @@ export class BeneficiaryRequestPage {
     this.beneficiaryEmail = '';
     this.title = '';
     this.description = '';
-    this.requestedAmount = 1000;
+    this.requestedAmount = 500000;
     this.documentsList.set([]);
   }
 }
