@@ -24,7 +24,7 @@ import { StateService, Campaign, Donation, VolunteerApplication, BeneficiaryRequ
             <div class="bg-white p-5 rounded-2xl border border-slate-200/60 shadow-sm flex items-center justify-between">
               <div>
                 <span class="text-xs font-bold text-slate-400 uppercase">Total Funding</span>
-                <h3 class="text-2xl font-black text-slate-800 mt-1">\${{ totalDonationsAmount() | number }}</h3>
+                <h3 class="text-2xl font-black text-slate-800 mt-1">TSh {{ totalDonationsAmount() | number }}</h3>
                 <span class="text-[9px] text-emerald-500 font-bold mt-1 block">✔ Verified Transactions</span>
               </div>
               <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
@@ -95,10 +95,10 @@ import { StateService, Campaign, Donation, VolunteerApplication, BeneficiaryRequ
                   <circle cx="480" cy="30" r="5" fill="#10b981" stroke="#ffffff" stroke-width="2" />
 
                   <!-- Y-Axis Labels -->
-                  <text x="15" y="25" fill="#94a3b8" font-size="8" font-weight="bold">$50k</text>
-                  <text x="15" y="75" fill="#94a3b8" font-size="8" font-weight="bold">$30k</text>
-                  <text x="15" y="125" fill="#94a3b8" font-size="8" font-weight="bold">$15k</text>
-                  <text x="15" y="175" fill="#94a3b8" font-size="8" font-weight="bold">$0</text>
+                  <text x="15" y="25" fill="#94a3b8" font-size="8" font-weight="bold">TSh 50M</text>
+                  <text x="15" y="75" fill="#94a3b8" font-size="8" font-weight="bold">TSh 30M</text>
+                  <text x="15" y="125" fill="#94a3b8" font-size="8" font-weight="bold">TSh 15M</text>
+                  <text x="15" y="175" fill="#94a3b8" font-size="8" font-weight="bold">TSh 0</text>
 
                   <!-- X-Axis Labels -->
                   <text x="45" y="190" fill="#94a3b8" font-size="8" font-weight="bold">Jan</text>
@@ -171,7 +171,7 @@ import { StateService, Campaign, Donation, VolunteerApplication, BeneficiaryRequ
 
               <div class="bg-indigo-50 border border-indigo-100/50 rounded-2xl p-4 text-center">
                 <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-500 block">Total Gift Contributions</span>
-                <span class="text-3xl font-black text-indigo-700 block mt-1">\${{ myTotalDonated() | number }}</span>
+                <span class="text-3xl font-black text-indigo-700 block mt-1">TSh {{ myTotalDonated() | number }}</span>
                 <span class="text-[9px] text-slate-400 block mt-1">4 Completed Transits</span>
               </div>
 
@@ -206,7 +206,7 @@ import { StateService, Campaign, Donation, VolunteerApplication, BeneficiaryRequ
                     @for (d of myDonations(); track d.id) {
                       <tr>
                         <td class="px-4 py-3.5 text-slate-800 font-bold truncate max-w-[200px]">{{ d.campaignTitle }}</td>
-                        <td class="px-4 py-3.5 text-emerald-600 font-extrabold">\${{ d.amount }}</td>
+                        <td class="px-4 py-3.5 text-emerald-600 font-extrabold">TSh {{ d.amount | number }}</td>
                         <td class="px-4 py-3.5">{{ d.paymentMethod }}</td>
                         <td class="px-4 py-3.5">{{ d.date }}</td>
                         <td class="px-4 py-3.5 text-right">
@@ -252,7 +252,7 @@ import { StateService, Campaign, Donation, VolunteerApplication, BeneficiaryRequ
                       <p class="text-xs text-slate-400 line-clamp-1 max-w-md">{{ req.description }}</p>
                       <div class="flex gap-4 text-[10px] text-slate-400 font-semibold pt-1">
                         <span>Submitted: {{ req.createdDate }}</span>
-                        <span>Amount: <strong>\${{ req.requestedAmount | number }}</strong></span>
+                        <span>Amount: <strong>TSh {{ req.requestedAmount | number }}</strong></span>
                       </div>
                     </div>
                     <span 
@@ -372,7 +372,7 @@ import { StateService, Campaign, Donation, VolunteerApplication, BeneficiaryRequ
                   </div>
                   <div class="grid grid-cols-2 gap-4">
                     <div>
-                      <label class="block text-slate-500 mb-1">Target Amount ($)</label>
+                      <label class="block text-slate-500 mb-1">Target Amount (TSh)</label>
                       <input type="number" [(ngModel)]="newCampTarget" name="newCampTarget" required class="w-full border px-3 py-2 rounded-lg text-slate-800 font-medium focus:outline-none">
                     </div>
                     <div>
@@ -409,8 +409,8 @@ import { StateService, Campaign, Donation, VolunteerApplication, BeneficiaryRequ
                   <tr>
                     <td class="px-4 py-3.5 text-slate-800 font-bold truncate max-w-[200px]">{{ c.title }}</td>
                     <td class="px-4 py-3.5">{{ c.category }}</td>
-                    <td class="px-4 py-3.5">\${{ c.targetAmount | number }}</td>
-                    <td class="px-4 py-3.5 text-emerald-600 font-bold">\${{ c.currentAmount | number }}</td>
+                    <td class="px-4 py-3.5">TSh {{ c.targetAmount | number }}</td>
+                    <td class="px-4 py-3.5 text-emerald-600 font-bold">TSh {{ c.currentAmount | number }}</td>
                     <td class="px-4 py-3.5">
                       <span 
                         [class]="c.status === 'active' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'"
@@ -471,7 +471,7 @@ import { StateService, Campaign, Donation, VolunteerApplication, BeneficiaryRequ
                     <td class="px-4 py-3.5 font-mono text-[10px] text-slate-400 uppercase">TX-{{ d.id.toString().substring(6) }}</td>
                     <td class="px-4 py-3.5 text-slate-800 font-bold">{{ d.donorName }}</td>
                     <td class="px-4 py-3.5 truncate max-w-[150px]">{{ d.campaignTitle }}</td>
-                    <td class="px-4 py-3.5 text-slate-800 font-extrabold">\${{ d.amount }}</td>
+                    <td class="px-4 py-3.5 text-slate-800 font-extrabold">TSh {{ d.amount | number }}</td>
                     <td class="px-4 py-3.5">{{ d.paymentMethod }}</td>
                     <td class="px-4 py-3.5">{{ d.date }}</td>
                     <td class="px-4 py-3.5">
@@ -584,7 +584,7 @@ import { StateService, Campaign, Donation, VolunteerApplication, BeneficiaryRequ
                     </td>
                     <td class="px-4 py-3.5 text-slate-800 font-bold truncate max-w-[150px]">{{ r.title }}</td>
                     <td class="px-4 py-3.5 truncate max-w-[200px]" [title]="r.description">{{ r.description }}</td>
-                    <td class="px-4 py-3.5 text-slate-800 font-extrabold">\${{ r.requestedAmount | number }}</td>
+                    <td class="px-4 py-3.5 text-slate-800 font-extrabold">TSh {{ r.requestedAmount | number }}</td>
                     <td class="px-4 py-3.5 text-[9px] font-bold text-slate-500 uppercase">
                       @for (doc of r.supportingDocuments; track doc) {
                         <span class="block hover:underline cursor-pointer text-indigo-600">📎 {{ doc }}</span>
@@ -639,7 +639,7 @@ import { StateService, Campaign, Donation, VolunteerApplication, BeneficiaryRequ
                   <tr>
                     <td class="px-4 py-3.5 font-mono text-[10px] text-slate-400 uppercase">TX-{{ d.id.toString().substring(6) }}</td>
                     <td class="px-4 py-3.5 text-slate-800 font-bold">{{ d.campaignTitle }}</td>
-                    <td class="px-4 py-3.5 text-emerald-600 font-extrabold">\${{ d.amount }}</td>
+                    <td class="px-4 py-3.5 text-emerald-600 font-extrabold">TSh {{ d.amount | number }}</td>
                     <td class="px-4 py-3.5">{{ d.paymentMethod }}</td>
                     <td class="px-4 py-3.5">{{ d.date }}</td>
                     <td class="px-4 py-3.5 text-right">
@@ -670,7 +670,7 @@ import { StateService, Campaign, Donation, VolunteerApplication, BeneficiaryRequ
               <textarea [(ngModel)]="newReqDesc" name="newReqDesc" rows="4" placeholder="Explain structural constraints and community beneficiaries..." required class="w-full border px-3 py-2 rounded-lg text-slate-800 font-medium focus:outline-none normal-case"></textarea>
             </div>
             <div>
-              <label class="block mb-1">Required Amount ($)</label>
+              <label class="block mb-1">Required Amount (TSh)</label>
               <input type="number" [(ngModel)]="newReqAmount" name="newReqAmount" required class="w-full border px-3 py-2 rounded-lg text-slate-800 font-medium focus:outline-none">
             </div>
             <button type="submit" class="w-full py-3 bg-slate-900 text-white rounded-lg text-xs font-bold mt-2">File Assistance Request</button>
@@ -863,7 +863,7 @@ export class Dashboard {
   exportDonationsExcel() {
     let csvContent = 'Transaction ID,Donor,Campaign,Amount,Payment Method,Date,Status\n';
     this.stateService.donations().forEach(d => {
-      csvContent += `TX-${d.id.toString().substring(6)},${d.donorName},"${d.campaignTitle}",\$${d.amount},${d.paymentMethod},${d.date},${d.status}\n`;
+      csvContent += `TX-${d.id.toString().substring(6)},${d.donorName},"${d.campaignTitle}",TSh ${d.amount},${d.paymentMethod},${d.date},${d.status}\n`;
     });
     
     const blob = new Blob([csvContent], { type: 'text/csv' });
@@ -886,7 +886,7 @@ export class Dashboard {
       Campaign: ${d.campaignTitle}
       Date: ${d.date}
       Donor: ${d.donorName}
-      Amount: \$${d.amount}
+      Amount: TSh ${d.amount.toLocaleString()}
       Status: ${d.status.toUpperCase()}
       
       Thank you for your generous support! Your contribution makes a direct difference.

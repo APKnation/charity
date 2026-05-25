@@ -36,7 +36,7 @@ import { Campaign, StateService } from '../services/state.service';
         <div class="mt-auto space-y-2">
           <!-- Percent and Details -->
           <div class="flex items-end justify-between text-xs font-semibold">
-            <span class="text-slate-500">Raised: <strong class="text-slate-800">\${{ campaign.currentAmount | number }}</strong></span>
+            <span class="text-slate-500">Raised: <strong class="text-slate-800">TSh {{ campaign.currentAmount | number }}</strong></span>
             <span class="text-emerald-600 font-bold">{{ progressPercent() }}%</span>
           </div>
 
@@ -50,7 +50,7 @@ import { Campaign, StateService } from '../services/state.service';
 
           <!-- Target & Status Footer -->
           <div class="flex items-center justify-between text-[10px] text-slate-400 font-bold pt-1.5 uppercase">
-            <span>Target: \${{ campaign.targetAmount | number }}</span>
+            <span>Target: TSh {{ campaign.targetAmount | number }}</span>
             <span [class]="campaign.status === 'active' ? 'text-emerald-500' : 'text-amber-500'">
               {{ campaign.status }}
             </span>

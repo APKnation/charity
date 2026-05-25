@@ -42,7 +42,7 @@ import { StateService } from '../../services/state.service';
               <!-- Stats Block -->
               <div class="space-y-3.5">
                 <div class="flex items-end justify-between font-bold text-xs">
-                  <span class="text-slate-500">Raised: <strong class="text-slate-800 text-base font-extrabold">\${{ campaign()?.currentAmount | number }}</strong></span>
+                  <span class="text-slate-500">Raised: <strong class="text-slate-800 text-base font-extrabold">TSh {{ campaign()?.currentAmount | number }}</strong></span>
                   <span class="text-emerald-600 text-sm">{{ progressPercent() }}%</span>
                 </div>
                 
@@ -51,7 +51,7 @@ import { StateService } from '../../services/state.service';
                 </div>
 
                 <div class="flex justify-between text-[10px] text-slate-400 font-bold uppercase pt-1">
-                  <span>Target: \${{ campaign()?.targetAmount | number }}</span>
+                  <span>Target: TSh {{ campaign()?.targetAmount | number }}</span>
                   <span>Donors: {{ campaign()?.donorCount }}</span>
                 </div>
               </div>
@@ -159,7 +159,7 @@ import { StateService } from '../../services/state.service';
                               </div>
                             </div>
                             <div class="text-right">
-                              <span class="font-bold text-slate-800 text-xs">\${{ donation.amount | number }}</span>
+                              <span class="font-bold text-slate-800 text-xs">TSh {{ donation.amount | number }}</span>
                               @if (donation.isRecurring) {
                                 <span class="block text-[8px] font-bold text-emerald-600 uppercase tracking-widest">{{ donation.recurringFrequency }}</span>
                               }

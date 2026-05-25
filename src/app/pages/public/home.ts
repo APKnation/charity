@@ -1,5 +1,6 @@
 import { Component, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { StateService } from '../../services/state.service';
 import { CampaignCardComponent } from '../../components/campaign-card';
@@ -7,7 +8,7 @@ import { CampaignCardComponent } from '../../components/campaign-card';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, CampaignCardComponent],
+  imports: [CommonModule, FormsModule, RouterLink, CampaignCardComponent],
   template: `
     <div class="space-y-16 pb-16">
       
@@ -72,7 +73,7 @@ import { CampaignCardComponent } from '../../components/campaign-card';
                         [class.hover:bg-white/10]="selectedQuickAmount() !== preset"
                         class="py-2.5 rounded-xl border border-white/5 font-semibold text-xs transition-all duration-200"
                       >
-                        \${{ preset }}
+                        TSh {{ preset | number }}
                       </button>
                     }
                   </div>
@@ -94,7 +95,7 @@ import { CampaignCardComponent } from '../../components/campaign-card';
                     (click)="triggerQuickDonate()"
                     class="w-full py-3.5 mt-2 bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-500 hover:to-teal-600 text-slate-950 font-extrabold text-sm rounded-xl text-center shadow-lg transition-transform hover:-translate-y-0.5"
                   >
-                    Donate \${{ selectedQuickAmount() }} Now
+                    Donate TSh {{ selectedQuickAmount() | number }} Now
                   </button>
                 </div>
               </div>
@@ -215,8 +216,8 @@ import { CampaignCardComponent } from '../../components/campaign-card';
 export class Home {
   stateService = inject(StateService);
 
-  quickAmounts = [25, 50, 100, 250, 500];
-  selectedQuickAmount = signal(50);
+  quickAmounts = [5000, 10000, 25000, 50000, 100000];
+  selectedQuickAmount = signal(10000);
   selectedCampaignId = '';
 
   activeCampaigns = computed(() => 
@@ -235,7 +236,7 @@ export class Home {
     const totalRaised = list.reduce((sum, c) => sum + c.currentAmount, 0);
     
     return [
-      { label: 'Total Raised', value: `\$${totalRaised.toLocaleString()}` },
+      { label: 'Total Raised', value: `TSh ${totalRaised.toLocaleString()}` },
       { label: 'Active Projects', value: list.filter(c => c.status === 'active').length.toString() },
       { label: 'Registered Volunteers', value: vList.length.toString() },
       { label: 'Individual Donors', value: donations.length.toString() }

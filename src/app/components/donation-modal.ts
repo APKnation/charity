@@ -53,7 +53,7 @@ import { AuthService } from '../services/auth.service';
                         [class.hover:bg-slate-100]="amount() !== preset || isCustomSelected()"
                         class="py-3 border border-slate-200/80 rounded-2xl font-semibold text-sm transition-all duration-200"
                       >
-                        \${{ preset }}
+                        TSh {{ preset | number }}
                       </button>
                     }
                   </div>
@@ -61,13 +61,13 @@ import { AuthService } from '../services/auth.service';
 
                 <!-- Custom Amount Input -->
                 <div class="relative">
-                  <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-semibold text-lg">$</span>
+                  <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-semibold text-sm">TSh</span>
                   <input 
                     type="number" 
                     [(ngModel)]="customAmount" 
                     (input)="onCustomAmountInput()"
                     placeholder="Enter custom amount" 
-                    class="w-full pl-8 pr-4 py-3.5 bg-slate-50 border border-slate-200/80 focus:border-emerald-500 rounded-2xl text-slate-800 font-medium placeholder-slate-400 focus:outline-none transition-colors"
+                    class="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200/80 focus:border-emerald-500 rounded-2xl text-slate-800 font-medium placeholder-slate-400 focus:outline-none transition-colors"
                   >
                 </div>
 
@@ -113,7 +113,7 @@ import { AuthService } from '../services/auth.service';
                   [disabled]="amount() <= 0"
                   class="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white rounded-2xl font-bold text-center shadow-lg shadow-emerald-500/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                 >
-                  Continue to Info (\${{ amount() }})
+                  Continue to Info (TSh {{ amount() | number }})
                 </button>
               </div>
             }
@@ -261,7 +261,7 @@ import { AuthService } from '../services/auth.service';
                     (click)="processPayment()" 
                     class="w-2/3 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl font-bold shadow-lg shadow-emerald-500/10 flex items-center justify-center gap-2 hover:scale-[1.01] transition-transform"
                   >
-                    <span>Secure Pay \${{ amount() }}</span>
+                    <span>Secure Pay TSh {{ amount() | number }}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
                   </button>
                 </div>
@@ -318,7 +318,7 @@ import { AuthService } from '../services/auth.service';
                   <div class="grid grid-cols-2 gap-y-3.5 pt-4">
                     <div>
                       <span class="text-[9px] uppercase font-bold tracking-wider text-slate-400 block mb-0.5">Donated Amount</span>
-                      <span class="font-extrabold text-emerald-600 text-base">\${{ amount() }}</span>
+                      <span class="font-extrabold text-emerald-600 text-base">TSh {{ amount() | number }}</span>
                     </div>
                     <div>
                       <span class="text-[9px] uppercase font-bold tracking-wider text-slate-400 block mb-0.5">Transaction ID</span>
@@ -380,10 +380,10 @@ export class DonationModalComponent {
   authService = inject(AuthService);
 
   step = signal<'amount' | 'billing' | 'payment' | 'processing' | 'success'>('amount');
-  presetAmounts = [10, 25, 50, 100, 250, 500];
+  presetAmounts = [5000, 10000, 25000, 50000, 100000, 250000];
   
   // Model state variables
-  amount = signal<number>(50);
+  amount = signal<number>(10000);
   customAmount = '';
   isCustomSelected = signal(false);
   isRecurring = false;
@@ -500,7 +500,7 @@ export class DonationModalComponent {
       Date: ${this.receiptDate()}
       Donor: ${this.isAnonymous ? 'Anonymous' : this.donorName}
       Email: ${this.donorEmail}
-      Amount: \$${this.amount()}
+      Amount: TSh ${this.amount().toLocaleString()}
       Status: COMPLETED (${this.isRecurring ? 'Monthly Subscription' : 'One-time donation'})
       
       Thank you for your generous support! Your contribution makes a direct difference.
